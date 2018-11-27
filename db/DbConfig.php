@@ -1,6 +1,7 @@
 <?php
 namespace Kuro\Db;
 
+require_once __DIR__ . "/../commandDefine.php";
 require_once __DIR__ . "/../util/StringExtension.php";
 
 use Kuro\Utility\StringExtension as Sx;
@@ -24,7 +25,7 @@ class DbConfig{
 	}
 
 	public function parse($city_id) {
-		$db_configs = shell_exec("city-cli " . $city_id . " show config db");
+		$db_configs = shell_exec(CMD_HEAD . $city_id . CMD_SHOW_DB);
 
 		foreach(explode(PHP_EOL, $db_configs) as $line) {
 			$arr = explode(" : ", $line);
